@@ -8,10 +8,21 @@ import org.junit.Test;
 
 import java.util.List;
 
+
 public class TestOne {
 
     JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCUtils.getDataSource());
 
+    //查询数据
+    @Test
+    public void asd(){
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCUtils.getDataSource());
+        String sql4="SELECT * FROM student";
+        List<Student> students = jdbcTemplate.query(sql4, new BeanPropertyRowMapper<>(Student.class));
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
 
     @Test
     //插入数据
@@ -29,6 +40,7 @@ public class TestOne {
         System.out.println(update2);
     }
 
+
     @Test
     //删除数据
     public void delect() {
@@ -37,14 +49,6 @@ public class TestOne {
         System.out.println(update1);
     }
 
-//    查询数据
-    public static void main(String[] args) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCUtils.getDataSource());
-        String sql4="SELECT * FROM student";
-        List<Student> students = jdbcTemplate.query(sql4, new BeanPropertyRowMapper<>(Student.class));
-        for (Student student : students) {
-            System.out.println(student);
-        }
-    }
+
 
 }
